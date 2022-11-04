@@ -4,4 +4,4 @@
 ## Don`t forget
 * Paste your bot token in config.json
 * Install following packages:
-  -discord.js@13.9.2
+  - discord.js@13.9.2
