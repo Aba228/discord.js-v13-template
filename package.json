@@ -1,0 +1,11 @@
+{
+  "name": "handler-bot",
+  "version": "3.0.3",
+  "description": "Discord.js handler",
+  "main": "client.js",
+  "author": "Leahim#2085",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.9.2"
+  }
+}
