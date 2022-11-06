@@ -32,7 +32,7 @@ module.exports = async (client, interaction) => {
             });
         };
     }
-
+    
     if (interaction.isSelectMenu()) {
         const select = client.selectmenu.get(interaction.customId);
         if (!select) return await interaction.reply({
