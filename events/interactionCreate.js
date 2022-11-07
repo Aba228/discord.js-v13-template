@@ -10,42 +10,12 @@ function defaultHandler(interaction) {
 }
 
 module.exports = async (client, interaction) => {
-    if (interaction.isCommand()) {
-        command = client.commands.get(interaction.commandName);
-
-        if (command && command.run) command.run(client, interaction)
+    function handleInteraction(interact) {
+        if (interact && interact.run) interact.run(client, interaction)
         else defaultHandler(interaction);
     }
-
-    if (interaction.isButton()) {
-        const button = client.buttons.get(interaction.customId);
-        if (!button) return await interaction.reply({
-            content: 'Кнопка не найдена!'
-        })
-        try {
-            await button.run(client, interaction)
-        } catch (error) {
-            console.error(error)
-            await interaction.reply({
-                content: "Вышла ошибка!",
-                ephemeral: true
-            });
-        };
-    }
     
-    if (interaction.isSelectMenu()) {
-        const select = client.selectmenu.get(interaction.customId);
-        if (!select) return await interaction.reply({
-            content: 'меню не найдено!'
-        })
-        try {
-            await select.run(client, interaction)
-        } catch (error) {
-            console.error(error)
-            await interaction.reply({
-                content: "Вышла ошибка!",
-                ephemeral: true
-            });
-        };
-    }
+    if (interaction.isCommand()) return handleInteraction(client.commands.get(interaction.commandName))
+    else if (interaction.isButton()) return handleInteraction(client.buttons.get(interaction.customId))
+    else return handleInteraction(client.selectmenues.get(interaction.customId))
 }
