@@ -9,7 +9,6 @@ function handleinteractions(client) {
         for (let i = 0; i < commandFiles.length; i++) {
             const command = require(`../commands/${directory}/${commandFiles[i]}`)
             const commandData = command.data.toJSON()
-            client.helpCommands.push({name: commandData.name, description: commandData.description, type: directory})
             client.commands.set(commandData.name, command);
         }
     })
